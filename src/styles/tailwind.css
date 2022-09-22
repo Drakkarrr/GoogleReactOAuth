@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.text {
+  font-size: 5rem;
+  padding-top: 3rem;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
