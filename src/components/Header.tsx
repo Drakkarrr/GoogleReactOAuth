@@ -191,9 +191,7 @@ export default Header
 
 const StyledHeader = styled.div`
   height: 8rem;
-  width: 100vw;
+  width: 100%;
   margin: auto !important;
-
   background: #087830;
-  /* color: white !important; */
 `
