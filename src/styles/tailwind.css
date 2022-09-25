@@ -6,5 +6,19 @@
   font-size: 5rem;
   padding-top: 3rem;
   color: white;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'Twentieth Century', sans-serif;
+}
+
+.section-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  text-align: center;
+  /* color: #14532d; */
+  /* background: url('../assets/ico-success.png'); */
+  background: url('../assets/test1.jpg') center center no-repeat fixed;
+  background-size: cover;
 }
