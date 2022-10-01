@@ -1,17 +1,18 @@
-export const Hero = (): JSX.Element => {
+const Hero = (): JSX.Element => {
   return (
-    <>
-      <div className='section-container lg:text-6xl m-auto border border-black'>
-        <div className='intro-text w-4/5 rounded-lg p-3 text-white z-10 bold'>
-          <h1 className='uppercase'>Welcome to La Photographia</h1>
-          <div>
-            <p className='pt-8 text-3xl lg:w-7/12 mx-auto'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Non
-              corporis vero sed minima temporibus. Impedit!
-            </p>
-          </div>
-        </div>
+    <div className='container mx-auto my-10 text-white text-center'>
+      <div className='lg:w-8/12 m-auto'>
+        <h1 className='text-5x uppercase lg:text-6xl pt-10'>
+          Lorem ipsum dolor sit amet consectetur
+        </h1>
+        <h2 className='py-8 text-3xl'>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus eius
+          velit ex aperiam dolore beatae sint corporis quaerat quidem nesciunt?
+          Lorem ipsum dolor sit amet!
+        </h2>
       </div>
-    </>
+    </div>
   )
 }
+
+export default Hero

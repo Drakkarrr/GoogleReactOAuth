@@ -13,7 +13,7 @@ const PaneExample: React.FC<PaneProps> = ({ children, style, className }) => (
   </div>
 )
 
-export const Carousel = (): JSX.Element => {
+const Carousel = (): JSX.Element => {
   const gliderRef = React.useRef<GliderMethods>(null)
 
   return (
@@ -56,3 +56,5 @@ const StyledCarousel = styled.div`
     height: 90%;
   } */
 `
+
+export default Carousel

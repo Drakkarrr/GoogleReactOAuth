@@ -11,6 +11,10 @@ body {
   background-color: #046F2A;
 }
 
+h1, h2 {
+  font-family: summernote;
+}
+
 img {
   height: 100%;
   width: auto;

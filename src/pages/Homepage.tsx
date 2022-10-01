@@ -1,13 +1,13 @@
-import { Carousel } from '../components/home/Carousel'
-import { Hero } from '../components/home/Hero'
+import Carousel from '../components/home/Carousel'
+import Intro from '../components/home/Intro'
+import Hero from '../components/home/Hero'
 
-const Homepage = () => {
+export const Homepage = () => {
   return (
     <>
-      <Hero />
+      <Intro />
       <Carousel />
+      <Hero />
     </>
   )
 }
-
-export default Homepage
