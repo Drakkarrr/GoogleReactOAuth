@@ -1,6 +1,7 @@
 import Carousel from '../components/home/Carousel'
 import Intro from '../components/home/Intro'
 import Hero from '../components/home/Hero'
+import Masonry from '../components/home/Masonry'
 
 export const Homepage = () => {
   return (
@@ -8,6 +9,7 @@ export const Homepage = () => {
       <Intro />
       <Carousel />
       <Hero />
+      <Masonry />
     </>
   )
 }
