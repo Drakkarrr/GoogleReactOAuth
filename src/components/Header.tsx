@@ -195,4 +195,6 @@ const StyledHeader = styled.div`
   width: 100%;
   margin: auto !important;
   background: #087830;
+  position: fixed;
+  z-index: 100;
 `

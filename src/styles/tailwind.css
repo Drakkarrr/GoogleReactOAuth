@@ -2,13 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.text {
-  font-size: 5rem;
-  padding-top: 3rem;
-  color: white;
-  font-family: 'Twentieth Century', sans-serif;
-}
-
 @font-face {
   font-family: 'summernote';
   font-style: normal;
@@ -19,6 +12,13 @@
     url(font/summernote.woff2) format('woff2'),
     url(font/summernote.woff) format('woff'),
     url(font/summernote.ttf) format('truetype');
+}
+
+.text {
+  font-size: 5rem;
+  padding-top: 3rem;
+  color: white;
+  font-family: 'Twentieth Century', sans-serif;
 }
 
 .section-container {

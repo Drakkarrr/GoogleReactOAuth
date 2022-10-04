@@ -9,6 +9,7 @@ export default createGlobalStyle`
 
 body {
   background-color: #046F2A;
+  scroll-behavior: smooth;
 }
 
 h1, h2 {
