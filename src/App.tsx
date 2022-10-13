@@ -1,14 +1,21 @@
-import Footer from './components/Footer'
-import Header from './components/Header'
-import { Homepage } from './pages/Homepage'
+import RootLayout from './shared/components/layouts/RootLayout'
+import { Routes, Route } from 'react-router-dom'
+import HomePage from './pages/HomePage'
+import AboutPage from './pages/AboutPage'
+import NotFound from './pages/NotFound'
 
-const App = () => {
+const App = (): JSX.Element => {
   return (
-    <div className='App'>
-      <Header />
-      <Homepage />
-      <Footer />
-    </div>
+    <>
+      <Routes>
+        <Route element={<RootLayout />}>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/about' element={<AboutPage />} />
+          <Route path='/organizations' element={null} />
+        </Route>
+        <Route path='*' element={<NotFound />} />
+      </Routes>
+    </>
   )
 }
 

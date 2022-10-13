@@ -4,7 +4,7 @@ import Hero from '../components/home/Hero'
 import Masonry from '../components/home/Masonry'
 import FeaturedShots from '../components/home/FeaturedShots'
 
-export const Homepage = () => {
+const HomePage = (): JSX.Element => {
   return (
     <>
       <Intro />
@@ -16,3 +16,5 @@ export const Homepage = () => {
     </>
   )
 }
+
+export default HomePage

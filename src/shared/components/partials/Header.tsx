@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
 import styled from 'styled-components'
-import camera from '../assets/camera.png'
+import camera from '../../../assets/camera.png'
 
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
-const Header: React.FC = () => {
+const Header = (): JSX.Element => {
   const navigation = [
     { name: 'Home', href: '#', current: true },
     { name: 'About', href: '/about-us', current: false },
