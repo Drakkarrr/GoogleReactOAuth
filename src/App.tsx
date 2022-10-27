@@ -1,6 +1,7 @@
 import RootLayout from './shared/components/layouts/RootLayout'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import HomePage from './pages/HomePage'
+import LoginPage from './pages/LoginPage'
 import AboutPage from './pages/AboutPage'
 import NotFound from './pages/NotFound'
 
@@ -13,6 +14,7 @@ const App = (): JSX.Element => {
           <Route path='/about' element={<AboutPage />} />
           <Route path='/organizations' element={null} />
         </Route>
+        <Route path='/login' element={<LoginPage />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </>

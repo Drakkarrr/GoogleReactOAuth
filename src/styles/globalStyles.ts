@@ -16,10 +16,6 @@ h1, h2 {
   font-family: summernote;
 }
 
-img {
-  height: 100%;
-  width: auto;
-}
 
 a {
   padding: 1.2rem;
