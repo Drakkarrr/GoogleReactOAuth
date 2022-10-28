@@ -8,17 +8,19 @@ import {
   CredentialResponse,
 } from '@react-oauth/google'
 
-// import GoogleLogin from 'react-google-login'
-// import { FcGoogle } from 'react-icons/fc'
-
 //! Assets
 import backgroundVideo from '../assets/backgroundVideo.mp4'
-// import Logo from '../assets/camera.png'
 import LSULogo from '../assets/lsu-logo.png'
 
 const Login: React.FC = () => {
-  const responseGoogle = (response: unknown) => {
-    console.log(response)
+  const navigate = useNavigate()
+
+  const onSuccess = (response: CredentialResponse) => {
+    console.log(`Successfully login: ${response.credential}`)
+    navigate('/dashboard')
+  }
+  const onError = () => {
+    console.log('Login failed')
   }
 
   return (
@@ -41,35 +43,13 @@ const Login: React.FC = () => {
               alt='La Photograpia official logo'
             />
           </div>
-
           <div className='shadow-2xl'>
-            {/* <GoogleLogin
-              clientId={process.env.REACT_APP_GOOGLE_API_TOKEN as string}
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy={'single_host_origin'}
-              render={renderProps => (
-                <button
-                  type='button'
-                  className='bg-mainColor flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none'
-                  onClick={renderProps.onClick}
-                  disabled={renderProps.disabled}
-                >
-                  <FcGoogle className='mr-4' />
-                  Sign in with Google
-                </button>
-              )}
-            /> */}
-
-            <GoogleOAuthProvider
-              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID as string}
-            >
+            <GoogleOAuthProvider clientId='389526293867-1pegkn0qiqisbi5vp5sc3q5ong2pgm0s.apps.googleusercontent.com'>
               <GoogleLogin
+                useOneTap
                 size='large'
-                onSuccess={(response: CredentialResponse): void => {
-                  console.log(`Successfully logged in ${response}`)
-                }}
-                onError={() => console.log('Login Failed')}
+                onSuccess={onSuccess}
+                onError={onError}
               />
             </GoogleOAuthProvider>
           </div>
