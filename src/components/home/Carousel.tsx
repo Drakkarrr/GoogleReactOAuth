@@ -7,7 +7,17 @@ import Test11 from '../../assets/test11.jpg'
 import Test12 from '../../assets/test12.jpg'
 import Test13 from '../../assets/test13.jpg'
 
-const PaneExample: React.FC<PaneProps> = ({ children, style, className }) => (
+type CarouselProps = {
+  className?: string
+  children?: React.ReactNode
+  style?: React.CSSProperties
+}
+
+const PaneExample: React.FC<CarouselProps> = ({
+  children,
+  style,
+  className,
+}) => (
   <div className={`glider-slide ${className}`} style={style}>
     <h1>{children}</h1>
   </div>

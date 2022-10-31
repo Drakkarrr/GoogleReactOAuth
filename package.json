@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "serve": "npm run build && npm run preview",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
@@ -21,7 +22,9 @@
     "@types/react-icons": "^3.0.0",
     "@types/styled-components": "^5.1.26",
     "axios": "^0.27.2",
+    "events": "^3.3.0",
     "heroicons": "^2.0.11",
+    "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-glider": "^3.1.0",

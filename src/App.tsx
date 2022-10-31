@@ -1,7 +1,7 @@
 import RootLayout from './shared/components/layouts/RootLayout'
 import { Routes, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage'
-import Dashboard from './components/Dashboard'
+import Dashboard from './components/dashboard/Dashboard'
 import LoginPage from './pages/LoginPage'
 import AboutPage from './pages/AboutPage'
 import NotFound from './pages/NotFound'

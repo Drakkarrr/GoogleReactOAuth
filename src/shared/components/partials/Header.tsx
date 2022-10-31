@@ -1,11 +1,14 @@
 import { Fragment } from 'react'
 import styled from 'styled-components'
 import camera from '../../../assets/camera.png'
+import { useNavigate } from 'react-router-dom'
 
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const Header = (): JSX.Element => {
+  const navigate = useNavigate()
+
   const navigation = [
     { name: 'Home', href: '#', current: true },
     { name: 'About', href: '/about-us', current: false },
@@ -29,7 +32,7 @@ const Header = (): JSX.Element => {
                   <div className='absolute inset-y-0 left-0 flex items-center sm:hidden'>
                     {/* Mobile menu button*/}
                     <Disclosure.Button className='inline-flex lg:items-center lg:justify-center rounded-md p-2 text-white hover:bg-green-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'>
-                      <span className='sr-only'>Login as</span>
+                      {/* <span className='sr-only'>Login as</span> */}
                       {open ? (
                         <XMarkIcon
                           className='block h-6 w-6'
@@ -86,8 +89,10 @@ const Header = (): JSX.Element => {
                     <Menu as='div' className='relative ml-3'>
                       <div>
                         <Menu.Button className='flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-green-400 '>
-                          <span className='sr-only'>Open user menu</span>
                           <svg
+                            onClick={() =>
+                              navigate('/login', { replace: true })
+                            }
                             className='h-8 w-8 bg-transparent rounded-full text-white'
                             xmlns='http://www.w3.org/2000/svg'
                             fill='none'
@@ -111,50 +116,7 @@ const Header = (): JSX.Element => {
                         leave='transition ease-in duration-75'
                         leaveFrom='transform opacity-100 scale-100'
                         leaveTo='transform opacity-0 scale-95'
-                      >
-                        <Menu.Items className='absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
-                          <span>Login as</span>
-                          <Menu.Item>
-                            {({ active }) => (
-                              <a
-                                href='#'
-                                className={classNames(
-                                  active ? 'bg-gray-100' : '',
-                                  'block px-4 py-2 text-sm text-gray-700',
-                                )}
-                              >
-                                CCSEA
-                              </a>
-                            )}
-                          </Menu.Item>
-                          <Menu.Item>
-                            {({ active }) => (
-                              <a
-                                href='#'
-                                className={classNames(
-                                  active ? 'bg-gray-100' : '',
-                                  'block px-4 py-2 text-sm text-gray-700',
-                                )}
-                              >
-                                UPAPSA
-                              </a>
-                            )}
-                          </Menu.Item>
-                          <Menu.Item>
-                            {({ active }) => (
-                              <a
-                                href='#'
-                                className={classNames(
-                                  active ? 'bg-gray-100' : '',
-                                  'block px-4 py-2 text-sm text-gray-700',
-                                )}
-                              >
-                                ORG
-                              </a>
-                            )}
-                          </Menu.Item>
-                        </Menu.Items>
-                      </Transition>
+                      ></Transition>
                     </Menu>
                   </div>
                 </div>

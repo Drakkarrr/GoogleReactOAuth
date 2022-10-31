@@ -7,6 +7,7 @@ import dns from 'dns'
 dotenv.config();
 dns.setDefaultResultOrder('verbatim')
 
+
 export default defineConfig({
   plugins: [react()],
   server: {
@@ -16,5 +17,8 @@ export default defineConfig({
     'process.env.PORT': `${process.env.PORT}`,
     'process.env.TEST': `"${process.env.TEST}"`,
     'process.env.REACT_APP_GOOGLE_CLIENT_ID': `"${process.env.REACT_APP_GOOGLE_CLIENT_ID}"`,
-  }
+    'process.env.REACT_APP_SANITY_PROJECT_ID': `"${process.env.REACT_APP_SANITY_PROJECT_ID}"`,
+    'process.env.REACT_APP_SANITY_TOKEN': `"${process.env.REACT_APP_SANITY_TOKEN}"`,
+  },
+
 })

@@ -1,5 +1,6 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import jwt_decode from 'jwt-decode'
+import { client } from '../services/client'
 
 //! Google authentication login
 import {
@@ -12,13 +13,31 @@ import {
 import backgroundVideo from '../assets/backgroundVideo.mp4'
 import LSULogo from '../assets/lsu-logo.png'
 
-const Login: React.FC = () => {
+const Login: React.FC = (): JSX.Element => {
   const navigate = useNavigate()
 
   const onSuccess = (response: CredentialResponse) => {
-    console.log(`Successfully login: ${response.credential}`)
-    navigate('/dashboard')
+    const userObject = jwt_decode(response.credential as string)
+    console.log(userObject)
+    localStorage.setItem('user', JSON.stringify(userObject))
+
+    const { name, sub, picture } = userObject as any
+
+    const doc = {
+      _id: sub,
+      _type: 'user',
+      userName: name,
+      image: picture,
+    }
+
+    console.log(doc)
+
+    client.createIfNotExists(doc).then(() => {
+      navigate('/', { replace: true })
+      console.log('User successfully created!')
+    })
   }
+
   const onError = () => {
     console.log('Login failed')
   }
@@ -39,20 +58,25 @@ const Login: React.FC = () => {
           <div className='p-5'>
             <img
               src={LSULogo}
-              width='150px'
+              width='180px'
               alt='La Photograpia official logo'
             />
           </div>
           <div className='shadow-2xl'>
-            <GoogleOAuthProvider clientId='389526293867-1pegkn0qiqisbi5vp5sc3q5ong2pgm0s.apps.googleusercontent.com'>
+            <GoogleOAuthProvider
+              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID as string}
+            >
               <GoogleLogin
-                useOneTap
                 size='large'
                 onSuccess={onSuccess}
                 onError={onError}
               />
             </GoogleOAuthProvider>
           </div>
+
+          {/* <div className='shadow-2xl mt-6 bg-white cursor-pointer text-black p-4 rounded-lg'>
+            <button>Continue as Guest</button>
+          </div> */}
         </div>
       </div>
     </div>

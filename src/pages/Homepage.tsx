@@ -8,7 +8,7 @@ const HomePage = (): JSX.Element => {
   return (
     <>
       <Intro />
-      <Carousel />
+      {/* <Carousel /> */}
       <Hero />
       <Masonry />
       <FeaturedShots />
