@@ -13,16 +13,15 @@ import {
 import backgroundVideo from '../assets/backgroundVideo.mp4'
 import LSULogo from '../assets/lsu-logo.png'
 
-const Login: React.FC = (): JSX.Element => {
+const Login = (): JSX.Element => {
   const navigate = useNavigate()
 
-  const onSuccess = (response: CredentialResponse) => {
+  const onSuccess = (response: CredentialResponse): void => {
     const userObject = jwt_decode(response.credential as string)
     console.log(userObject)
     localStorage.setItem('user', JSON.stringify(userObject))
 
     const { name, sub, picture } = userObject as any
-
     const doc = {
       _id: sub,
       _type: 'user',
@@ -33,12 +32,12 @@ const Login: React.FC = (): JSX.Element => {
     console.log(doc)
 
     client.createIfNotExists(doc).then(() => {
-      navigate('/', { replace: true })
+      navigate('/dashboard', { replace: true })
       console.log('User successfully created!')
     })
   }
 
-  const onError = () => {
+  const onError = (): void => {
     console.log('Login failed')
   }
 
