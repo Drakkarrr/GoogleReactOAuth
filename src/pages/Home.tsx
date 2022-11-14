@@ -1,26 +1,17 @@
-import React, { useState, useRef, useEffect, HtmlHTMLAttributes } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { HiMenu } from 'react-icons/hi'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import { Link, Route, Routes } from 'react-router-dom'
 
 import { Sidebar, UserProfile } from '../components/dashboard'
 import { userQuery } from '../utils/helpers/data'
-// import { categories } from '../utils/helpers/categories'
-
 import { client } from '../services/client'
-import GalleryPage from './GalleryPage'
-import Logo from '../assets/camera.png'
+import Pins from './Pins'
+import logo from '../assets/logo.png'
 
-type User = {
-  userName: string
-  _userId: string | number
-  image: string
-  closeToggle: boolean
-}
-
-const Dashboard: React.FC<User> = (): JSX.Element => {
-  const [toggleSidebar, setToggleSidebar] = useState<boolean>(false)
-  const [user, setUser] = useState<User | null>(null)
+const Home: React.FC = () => {
+  const [toggleSidebar, setToggleSidebar] = useState(false)
+  const [user, setUser] = useState()
   const scrollRef = useRef(null)
 
   const userInfo =
@@ -37,41 +28,26 @@ const Dashboard: React.FC<User> = (): JSX.Element => {
   }, [userInfo?.sub])
 
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollTo(0, 0)
-    }
+    scrollRef.current.scrollTo(0, 0)
   })
 
-  // useEffect(() => {
-  //   if (user === undefined) {
-  //     const userInfo = localStorage.getItem('user')
-  //     return setUser(JSON.parse(userInfo as any))
-  //   } else {
-  //     localStorage.clear()
-  //   }
-  // }, [])
-
-  const handleSidebar = (): void => {
-    setToggleSidebar(!toggleSidebar)
-  }
-
   return (
-    <>
-      <div className='flex bg-green-200 md:flex-row flex-col h-screen transition-height duration-75 ease-out'>
-        <div className='hidden md:flex h-screen flex-initial'>
-          <Sidebar />
-        </div>
-        <div className='flex md:hidden flex-row'>
-          <HiMenu
-            className='cursor-pointer'
-            fontSize={40}
-            onClick={handleSidebar}
-          />
-          <Link to='/'>
-            <img src={Logo} alt='logo' className='w-30 h-20' />
-          </Link>
+    <div className='flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-out'>
+      <div className='hidden md:flex h-screen flex-initial'>
+        <Sidebar />
+      </div>
 
-          <Link to={`user-profile/${user?._userId}`}>
+      <div className='flex md:hidden flex-row'>
+        <div className='p-2 w-full flex flex-row justify-between items-center shadow-md'>
+          <HiMenu
+            fontSize={40}
+            className='cursor-pointer'
+            onClick={() => setToggleSidebar(true)}
+          />
+          <Link to='/' className='w-28'>
+            <img src={logo} alt='logo' className='w-28' />
+          </Link>
+          <Link to={`user-profile/${user?._id}`}>
             <img
               src={user?.image}
               alt='user-pic'
@@ -95,14 +71,11 @@ const Dashboard: React.FC<User> = (): JSX.Element => {
       <div className='pb-2 flex-1 h-screen overflow-y-scroll' ref={scrollRef}>
         <Routes>
           <Route path='/user-profile/:userId' element={<UserProfile />} />
-          <Route
-            path='/gallery-page'
-            element={<GalleryPage user={user && user} />}
-          />
+          <Route path='/*' element={<Pins user={user && user} />} />
         </Routes>
       </div>
-    </>
+    </div>
   )
 }
 
-export default Dashboard
+export default Home
