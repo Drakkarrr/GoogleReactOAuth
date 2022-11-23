@@ -7,7 +7,7 @@ export const client = sanityClient({
     projectId: process.env.REACT_APP_SANITY_PROJECT_ID,
     dataset: 'production',
     useCdn: true,
-    apiVersion: '2021-11-16',
+    apiVersion: '2022-11-16',
     token: process.env.REACT_APP_SANITY_TOKEN,
     ignoreBrowserTokenWarning: true
 })

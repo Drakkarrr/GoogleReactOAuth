@@ -10,7 +10,7 @@ const Header = (): JSX.Element => {
   const navigate = useNavigate()
 
   const navigation = [
-    { name: 'Home', href: '#', current: true },
+    { name: 'Home', href: '/', current: true },
     { name: 'About', href: '/about-us', current: false },
     { name: 'Organizations', href: '/organizations', current: false },
     // { name: 'Collections', href: '/collections', current: false },

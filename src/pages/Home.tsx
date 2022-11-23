@@ -34,7 +34,15 @@ const Home: React.FC = () => {
   return (
     <div className='flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-out'>
       <div className='hidden md:flex h-screen flex-initial'>
-        <Sidebar />
+        <Sidebar
+          setToggleSidebar={function (
+            value: React.SetStateAction<boolean>,
+          ): void {
+            throw new Error('Function not implemented.')
+          }}
+          closeToggle={undefined}
+          user={undefined}
+        />
       </div>
 
       <div className='flex md:hidden flex-row'>
@@ -64,7 +72,15 @@ const Home: React.FC = () => {
                 onClick={() => setToggleSidebar(false)}
               />
             </div>
-            <Sidebar closeToggle={setToggleSidebar} user={user && user} />
+            <Sidebar
+              closeToggle={setToggleSidebar}
+              user={user && user}
+              setToggleSidebar={function (
+                value: React.SetStateAction<boolean>,
+              ): void {
+                throw new Error('Function not implemented.')
+              }}
+            />
           </div>
         )}
       </div>

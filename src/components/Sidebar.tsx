@@ -11,9 +11,9 @@ const isActiveStyle =
   'flex items-center px-5 gap-3 font-extrabold border-r-2 border-black  transition-all duration-200 ease-in-out capitalize'
 
 type Props = {
-  toggleSidebar: boolean
+  toggleSidebar?: boolean
   setToggleSidebar: React.Dispatch<React.SetStateAction<boolean>>
-  closeToggle: boolean
+  closeToggle: boolean | any
   user: string | any
 }
 

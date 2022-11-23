@@ -7,6 +7,7 @@ import LoginPage from './pages/LoginPage'
 import Home from './pages/Home'
 import AboutPage from './pages/AboutPage'
 import NotFound from './pages/NotFound'
+import OrganizationsPage from './pages/OrganizationsPage'
 
 const App: React.FC = () => {
   // const [user, setUser] = useState<null | string>(null)
@@ -28,10 +29,11 @@ const App: React.FC = () => {
         <Route element={<RootLayout />}>
           <Route path='/' element={<HomePage />} />
           <Route path='/about-us' element={<AboutPage />} />
+          <Route path='/organizations' element={<OrganizationsPage />} />
         </Route>
         <Route path='/login' element={<LoginPage />} />
         <Route path='*' element={<NotFound />} />
-        {/* <Route path='/dashboard/*' element={<Dashboard />} /> */}
+        <Route path='/dashboard/*' element={<Dashboard />} />
       </Routes>
     </>
   )
