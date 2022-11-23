@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { RiHomeFill } from 'react-icons/ri'
 import { IoIosArrowForward } from 'react-icons/io'
-import logo from '../assets/logo.png'
+import logo from '../assets/camera.png'
 import { categories } from '../utils/helpers/data'
 
 const isNotActiveStyle =
@@ -10,7 +10,14 @@ const isNotActiveStyle =
 const isActiveStyle =
   'flex items-center px-5 gap-3 font-extrabold border-r-2 border-black  transition-all duration-200 ease-in-out capitalize'
 
-const Sidebar = ({ closeToggle, user }) => {
+type Props = {
+  toggleSidebar: boolean
+  setToggleSidebar: React.Dispatch<React.SetStateAction<boolean>>
+  closeToggle: boolean
+  user: string | any
+}
+
+const Sidebar: React.FC<Props> = ({ closeToggle, user }) => {
   const handleCloseSidebar = () => {
     if (closeToggle) closeToggle(false)
   }

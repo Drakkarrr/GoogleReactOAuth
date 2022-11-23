@@ -3,18 +3,19 @@ import { AiOutlineCloudUpload } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
 import { MdDelete } from 'react-icons/md'
 
-import { categories } from '../utils/data'
-import { client } from '../client'
+import { categories } from '../utils/helpers/data'
+import { client } from '../services/client'
 import Spinner from './Spinner'
+import { SanityAssetDocument } from '@sanity/client'
 
 const CreatePin = ({ user }) => {
   const [title, setTitle] = useState('')
   const [about, setAbout] = useState('')
   const [loading, setLoading] = useState(false)
-  const [destination, setDestination] = useState()
-  const [fields, setFields] = useState()
-  const [category, setCategory] = useState()
-  const [imageAsset, setImageAsset] = useState()
+  const [destination, setDestination] = useState<string>('')
+  const [fields, setFields] = useState<boolean>()
+  const [category, setCategory] = useState<undefined | string>()
+  const [imageAsset, setImageAsset] = useState<SanityAssetDocument | null>()
   const [wrongImageType, setWrongImageType] = useState(false)
 
   const navigate = useNavigate()
@@ -91,7 +92,7 @@ const CreatePin = ({ user }) => {
       <div className=' flex lg:flex-row flex-col justify-center items-center bg-white lg:p-5 p-3 lg:w-4/5  w-full'>
         <div className='bg-secondaryColor p-3 flex flex-0.7 w-full'>
           <div className=' flex justify-center items-center flex-col border-2 border-dotted border-gray-300 p-3 w-full h-420'>
-            {loading && <Spinner />}
+            {loading && <Spinner message='Error!' />}
             {wrongImageType && <p>It&apos;s wrong file type.</p>}
             {!imageAsset ? (
               // eslint-disable-next-line jsx-a11y/label-has-associated-control
@@ -182,10 +183,11 @@ const CreatePin = ({ user }) => {
                 <option value='others' className='sm:text-bg bg-white'>
                   Select Category
                 </option>
-                {categories.map(item => (
+                {categories.map((item, index) => (
                   <option
                     className='text-base border-0 outline-none capitalize bg-white text-black '
                     value={item.name}
+                    key={index}
                   >
                     {item.name}
                   </option>

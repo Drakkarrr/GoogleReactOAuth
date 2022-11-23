@@ -7,8 +7,8 @@ import {
   userCreatedPinsQuery,
   userQuery,
   userSavedPinsQuery,
-} from '../utils/data'
-import { client } from '../client'
+} from '../utils/helpers/data'
+import { client } from '../services/client'
 import MasonryLayout from './MasonryLayout'
 import Spinner from './Spinner'
 
@@ -18,16 +18,16 @@ const notActiveBtnStyles =
   'bg-primary mr-4 text-black font-bold p-2 rounded-full w-20 outline-none'
 
 const UserProfile = () => {
-  const [user, setUser] = useState()
-  const [pins, setPins] = useState()
-  const [text, setText] = useState('Created')
-  const [activeBtn, setActiveBtn] = useState('created')
+  const [user, setUser] = useState<any | undefined>()
+  const [pins, setPins] = useState<any | undefined>()
+  const [text, setText] = useState<string | any>('Created')
+  const [activeBtn, setActiveBtn] = useState<string | any>('created')
   const navigate = useNavigate()
   const { userId } = useParams()
 
   const User =
     localStorage.getItem('user') !== 'undefined'
-      ? JSON.parse(localStorage.getItem('user'))
+      ? JSON.parse(localStorage.getItem('user') as string)
       : localStorage.clear()
 
   useEffect(() => {
@@ -55,8 +55,12 @@ const UserProfile = () => {
 
   const logout = () => {
     localStorage.clear()
-
     navigate('/login')
+  }
+
+  const handleText = (text: string) => {
+    setText(text)
+    setActiveBtn(text.toLowerCase())
   }
 
   if (!user) return <Spinner message='Loading profile' />
@@ -85,7 +89,7 @@ const UserProfile = () => {
               <button
                 type='button'
                 className=' bg-white p-2 rounded-full cursor-pointer outline-none shadow-md'
-                onClick={e => logout(e)}
+                onClick={() => logout()}
               >
                 <AiOutlineLogout color='red' fontSize={21} />
               </button>
@@ -95,10 +99,7 @@ const UserProfile = () => {
         <div className='text-center mb-7'>
           <button
             type='button'
-            onClick={e => {
-              setText(e.target.textContent)
-              setActiveBtn('created')
-            }}
+            onClick={handleText as any}
             className={`${
               activeBtn === 'created' ? activeBtnStyles : notActiveBtnStyles
             }`}
@@ -107,7 +108,7 @@ const UserProfile = () => {
           </button>
           <button
             type='button'
-            onClick={e => {
+            onClick={(e: any) => {
               setText(e.target.textContent)
               setActiveBtn('saved')
             }}

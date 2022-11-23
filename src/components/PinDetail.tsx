@@ -3,15 +3,15 @@ import { MdDownloadForOffline } from 'react-icons/md'
 import { Link, useParams } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 
-import { client, urlFor } from '../client'
+import { client, urlFor } from '../services/client'
 import MasonryLayout from './MasonryLayout'
 import { pinDetailMorePinQuery, pinDetailQuery } from '../utils/helpers/data'
 import Spinner from './Spinner'
 
 const PinDetail = ({ user }) => {
-  const { pinId } = useParams()
-  const [pins, setPins] = useState()
-  const [pinDetail, setPinDetail] = useState()
+  const { pinId } = useParams<string>()
+  const [pins, setPins] = useState<any | number>()
+  const [pinDetail, setPinDetail] = useState<undefined | any>()
   const [comment, setComment] = useState('')
   const [addingComment, setAddingComment] = useState(false)
 
@@ -41,7 +41,7 @@ const PinDetail = ({ user }) => {
       setAddingComment(true)
 
       client
-        .patch(pinId)
+        .patch(pinId as string)
         .setIfMissing({ comments: [] })
         .insert('after', 'comments[-1]', [
           {

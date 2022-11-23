@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { client } from '../client'
-import { feedQuery, searchQuery } from '../utils/data'
+import { client } from '../services/client'
+import { feedQuery, searchQuery } from '../utils/helpers/data'
 import MasonryLayout from './MasonryLayout'
 import Spinner from './Spinner'
 
-const Feed = () => {
+const Feed: React.FC = () => {
   const [pins, setPins] = useState()
   const [loading, setLoading] = useState(false)
   const { categoryId } = useParams()

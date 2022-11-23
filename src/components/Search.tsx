@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 
 import MasonryLayout from './MasonryLayout'
-import { client } from '../client'
+import { client } from '../services/client'
 import { feedQuery, searchQuery } from '../utils/helpers/data'
 import Spinner from './Spinner'
 
 const Search = ({ searchTerm }) => {
-  const [pins, setPins] = useState()
-  const [loading, setLoading] = useState(false)
+  const [pins, setPins] = useState<any | string>()
+  const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
     if (searchTerm !== '') {

@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import { Navbar, Feed, PinDetail, CreatePin, Search } from '../components'
 
-const Pins = ({ user }) => {
-  const [searchTerm, setSearchTerm] = useState('')
+const Pins = ({ user }): JSX.Element => {
+  const [searchTerm, setSearchTerm] = useState<string>('')
 
   return (
     <div className='px-2 md:px-5'>

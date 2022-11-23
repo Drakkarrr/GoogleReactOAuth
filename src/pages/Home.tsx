@@ -3,15 +3,15 @@ import { HiMenu } from 'react-icons/hi'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import { Link, Route, Routes } from 'react-router-dom'
 
-import { Sidebar, UserProfile } from '../components/dashboard'
+import { Sidebar, UserProfile } from '../components'
 import { userQuery } from '../utils/helpers/data'
 import { client } from '../services/client'
 import Pins from './Pins'
-import logo from '../assets/logo.png'
+import logo from '../assets/camera.png'
 
 const Home: React.FC = () => {
-  const [toggleSidebar, setToggleSidebar] = useState(false)
-  const [user, setUser] = useState()
+  const [toggleSidebar, setToggleSidebar] = useState<boolean | any>(false)
+  const [user, setUser] = useState<any | string>()
   const scrollRef = useRef(null)
 
   const userInfo =

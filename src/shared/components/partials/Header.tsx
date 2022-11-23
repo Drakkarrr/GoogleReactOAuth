@@ -13,8 +13,8 @@ const Header = (): JSX.Element => {
     { name: 'Home', href: '#', current: true },
     { name: 'About', href: '/about-us', current: false },
     { name: 'Organizations', href: '/organizations', current: false },
-    { name: 'Collections', href: '/collections', current: false },
-    { name: 'Featured', href: '/featured', current: false },
+    // { name: 'Collections', href: '/collections', current: false },
+    // { name: 'Featured', href: '/featured', current: false },
   ]
 
   const classNames = (...classes: unknown[]) => {

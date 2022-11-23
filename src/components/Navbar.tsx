@@ -2,7 +2,13 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { IoMdAdd, IoMdSearch } from 'react-icons/io'
 
-const Navbar = ({ searchTerm, setSearchTerm, user }) => {
+type NavbarProps = {
+  user: string | any
+  searchTerm: string
+  setSearchTerm: (searchTerm: string) => void
+}
+
+const Navbar: React.FC<NavbarProps> = ({ searchTerm, setSearchTerm, user }) => {
   const navigate = useNavigate()
 
   if (user) {

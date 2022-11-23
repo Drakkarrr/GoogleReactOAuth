@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect, HtmlHTMLAttributes } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { HiMenu } from 'react-icons/hi'
 import { AiFillCloseCircle } from 'react-icons/ai'
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Route, Routes, useNavigate } from 'react-router-dom'
 
 import { Sidebar, UserProfile } from '../components/dashboard'
 import { userQuery } from '../utils/helpers/data'
@@ -18,15 +18,17 @@ type User = {
   closeToggle: boolean
 }
 
-const Dashboard: React.FC<User> = (): JSX.Element => {
+const Dashboard = (): JSX.Element => {
   const [toggleSidebar, setToggleSidebar] = useState<boolean>(false)
   const [user, setUser] = useState<User | null>(null)
+  const navigate = useNavigate()
   const scrollRef = useRef(null)
 
   const userInfo =
     localStorage.getItem('user') !== 'undefined'
       ? JSON.parse(localStorage.getItem('user') as string)
       : localStorage.clear()
+  if (!user) navigate('/login')
 
   useEffect(() => {
     const query = userQuery(userInfo?.sub)
@@ -48,8 +50,22 @@ const Dashboard: React.FC<User> = (): JSX.Element => {
   //     return setUser(JSON.parse(userInfo as any))
   //   } else {
   //     localStorage.clear()
+  // navigate('/login')
   //   }
   // }, [])
+
+  // const [user, setUser] = useState<null | string>(null)
+  // const navigate = useNavigate()
+
+  // useEffect(() => {
+  //   const User =
+  //     localStorage.getItem('user') !== 'undefined'
+  //       ? JSON.parse(localStorage.getItem('user') as string)
+  //       : localStorage.clear()
+  //   setUser(User)
+
+  //   if (!user) navigate('/')
+  // }, [navigate])
 
   const handleSidebar = (): void => {
     setToggleSidebar(!toggleSidebar)
@@ -91,15 +107,18 @@ const Dashboard: React.FC<User> = (): JSX.Element => {
             <Sidebar closeToggle={setToggleSidebar} user={user && user} />
           </div>
         )}
-      </div>
-      <div className='pb-2 flex-1 h-screen overflow-y-scroll' ref={scrollRef}>
-        <Routes>
-          <Route path='/user-profile/:userId' element={<UserProfile />} />
-          <Route
-            path='/gallery-page'
-            element={<GalleryPage user={user && user} />}
-          />
-        </Routes>
+        {/* <div
+          className='pb-2 flex-1 h-screen bg-black overflow-y-scroll'
+          ref={scrollRef}
+        >
+          <Routes>
+            <Route path='/user-profile/:userId' element={<UserProfile />} />
+            <Route
+              path='/gallery-page'
+              element={<GalleryPage user={user && user} />}
+            />
+          </Routes>
+        </div> */}
       </div>
     </>
   )
