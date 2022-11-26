@@ -22,6 +22,7 @@ const Login = (): JSX.Element => {
     localStorage.setItem('user', JSON.stringify(userObject))
 
     const { name, sub, picture } = userObject as any
+
     const doc = {
       _id: sub,
       _type: 'user',

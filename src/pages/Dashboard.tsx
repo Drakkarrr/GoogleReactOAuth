@@ -74,7 +74,7 @@ const Dashboard = (): JSX.Element => {
   return (
     <>
       <div className='flex bg-green-200 md:flex-row flex-col h-screen transition-height duration-75 ease-out'>
-        <div className='hidden md:flex h-screen flex-initial'>
+        <div className='hidden md:flex h-screen bg-black w-190 flex-initial'>
           <Sidebar />
         </div>
         <div className='flex md:hidden flex-row'>
@@ -87,7 +87,7 @@ const Dashboard = (): JSX.Element => {
             <img src={Logo} alt='logo' className='w-30 h-20' />
           </Link>
 
-          <Link to={`user-profile/${user?._userId}`}>
+          <Link to={`user-profile/${user?.userName}`}>
             <img
               src={user?.image}
               alt='user-pic'

@@ -59,7 +59,7 @@ export const pinDetailQuery = (pinId: unknown) => {
   return query;
 };
 
-export const pinDetailMorePinQuery = (pin: unknown) => {
+export const pinDetailMorePinQuery = (pin: any) => {
   const query = `*[_type == "pin" && category == '${pin.category}' && _id != '${pin._id}' ]{
       image{
         asset->{
