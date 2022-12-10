@@ -1,6 +1,7 @@
+import React from 'react'
 import { Circles } from 'react-loader-spinner'
 
-const Spinner = ({ message }): JSX.Element => {
+const Spinner: React.FC<any> = ({ message }) => {
   return (
     <div className='flex flex-col justify-center items-center w-full h-full'>
       <Circles

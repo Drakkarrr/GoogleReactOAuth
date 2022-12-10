@@ -3,7 +3,7 @@ import { AiOutlineCloudUpload } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
 import { MdDelete } from 'react-icons/md'
 
-import { categories } from '../utils/helpers/data'
+import { categories } from '../utils/helpers/categories'
 import { client } from '../services/client'
 import Spinner from './Spinner'
 import { SanityAssetDocument } from '@sanity/client'

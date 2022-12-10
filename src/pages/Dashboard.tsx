@@ -1,127 +1,85 @@
 import { useState, useRef, useEffect } from 'react'
 import { HiMenu } from 'react-icons/hi'
 import { AiFillCloseCircle } from 'react-icons/ai'
-import { Link, Route, Routes, useNavigate } from 'react-router-dom'
+import { Link, Route, Routes } from 'react-router-dom'
 
-import { Sidebar, UserProfile } from '../components/dashboard'
+import { UserProfile, Sidebar } from '../components'
+import Pins from './Pins'
 import { userQuery } from '../utils/helpers/data'
-// import { categories } from '../utils/helpers/categories'
-
 import { client } from '../services/client'
-import GalleryPage from './GalleryPage'
-import Logo from '../assets/camera.png'
+import Logo from '../assets/lsu-logo.png'
 
-type User = {
-  userName: string
-  _userId: string | number
-  image: string
-  closeToggle: boolean
-}
-
-const Dashboard = (): JSX.Element => {
+const Dashboardd = () => {
   const [toggleSidebar, setToggleSidebar] = useState<boolean>(false)
-  const [user, setUser] = useState<User | null>(null)
-  const navigate = useNavigate()
+  const [user, setUser] = useState<any | null>(null)
   const scrollRef = useRef(null)
 
   const userInfo =
     localStorage.getItem('user') !== 'undefined'
       ? JSON.parse(localStorage.getItem('user') as string)
       : localStorage.clear()
-  if (!user) navigate('/login')
 
   useEffect(() => {
     const query = userQuery(userInfo?.sub)
-    console.log(query)
     client.fetch(query).then(data => {
       setUser(data[0])
     })
-  }, [userInfo?.sub])
+  }, [])
 
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollTo(0, 0)
-    }
-  })
-
-  // useEffect(() => {
-  //   if (user === undefined) {
-  //     const userInfo = localStorage.getItem('user')
-  //     return setUser(JSON.parse(userInfo as any))
-  //   } else {
-  //     localStorage.clear()
-  // navigate('/login')
-  //   }
-  // }, [])
-
-  // const [user, setUser] = useState<null | string>(null)
-  // const navigate = useNavigate()
-
-  // useEffect(() => {
-  //   const User =
-  //     localStorage.getItem('user') !== 'undefined'
-  //       ? JSON.parse(localStorage.getItem('user') as string)
-  //       : localStorage.clear()
-  //   setUser(User)
-
-  //   if (!user) navigate('/')
-  // }, [navigate])
-
-  const handleSidebar = (): void => {
-    setToggleSidebar(!toggleSidebar)
-  }
+    scrollRef.current.scrollTo(0, 0)
+  }, [])
 
   return (
     <>
-      <div className='flex bg-green-200 md:flex-row flex-col h-screen transition-height duration-75 ease-out'>
-        <div className='hidden md:flex h-screen bg-black w-190 flex-initial'>
-          <Sidebar />
+      <div className='flex bg-slate-400 md:flex-row flex-col transition-height duration-75 ease-out'>
+        <div className='hidden md:flex h-screen flex-initial'>
+          <Sidebar user={user && user} />
         </div>
         <div className='flex md:hidden flex-row'>
-          <HiMenu
-            className='cursor-pointer'
-            fontSize={40}
-            onClick={handleSidebar}
-          />
-          <Link to='/'>
-            <img src={Logo} alt='logo' className='w-30 h-20' />
-          </Link>
-
-          <Link to={`user-profile/${user?.userName}`}>
-            <img
-              src={user?.image}
-              alt='user-pic'
-              className='w-9 h-9 rounded-full '
+          <div className='p-2 w-full flex flex-row justify-between items-center shadow-md'>
+            <HiMenu
+              fontSize={40}
+              className='cursor-pointer'
+              onClick={() => setToggleSidebar(true)}
             />
-          </Link>
-        </div>
-        {toggleSidebar && (
-          <div className='fixed w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-slide-in'>
-            <div className='absolute w-full flex justify-end items-center p-2'>
-              <AiFillCloseCircle
-                fontSize={30}
-                className='cursor-pointer'
-                onClick={() => setToggleSidebar(false)}
+            <Link to='/dashboard'>
+              <img src={Logo} alt='Official logo' className='w-28' />
+            </Link>
+            <Link to={`user-profile/${user?._id}`}>
+              <img
+                src={user?.image}
+                alt='user-pic'
+                className='w-9 h-9 rounded-full '
               />
-            </div>
-            <Sidebar closeToggle={setToggleSidebar} user={user && user} />
+            </Link>
           </div>
-        )}
-        {/* <div
-          className='pb-2 flex-1 h-screen bg-black overflow-y-scroll'
+          {toggleSidebar && (
+            <div className='fixed w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-slide-in'>
+              <div className='absolute w-full flex justify-end items-centerp-2'>
+                <AiFillCloseCircle
+                  fontSize={30}
+                  className='cursor-pointer'
+                  onClick={() => setToggleSidebar(false)}
+                />
+              </div>
+              <Sidebar user={user && user} closeToggle={setToggleSidebar} />
+            </div>
+          )}
+        </div>
+
+        <div
+          className='pb-2 flex-1 h-screen overflow-y-scroll text-white'
           ref={scrollRef}
         >
           <Routes>
             <Route path='/user-profile/:userId' element={<UserProfile />} />
-            <Route
-              path='/gallery-page'
-              element={<GalleryPage user={user && user} />}
-            />
+            <Route path='*' element={<Pins user={user} />} />
           </Routes>
-        </div> */}
+        </div>
       </div>
     </>
   )
 }
 
-export default Dashboard
+export default Dashboardd

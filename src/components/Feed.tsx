@@ -7,8 +7,8 @@ import MasonryLayout from './MasonryLayout'
 import Spinner from './Spinner'
 
 const Feed: React.FC = () => {
-  const [pins, setPins] = useState()
-  const [loading, setLoading] = useState(false)
+  const [pins, setPins] = useState<null | any>(null)
+  const [loading, setLoading] = useState<boolean>(false)
   const { categoryId } = useParams()
 
   useEffect(() => {
@@ -21,7 +21,6 @@ const Feed: React.FC = () => {
       })
     } else {
       setLoading(true)
-
       client.fetch(feedQuery).then(data => {
         setPins(data)
         setLoading(false)

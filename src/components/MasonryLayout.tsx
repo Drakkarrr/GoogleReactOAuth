@@ -11,17 +11,12 @@ const breakpointColumnsObj = {
   500: 1,
 }
 
-interface MasonryLayoutProps {
-  pins: any
-  className?: string
-}
-
-const MasonryLayout: React.FC<MasonryLayoutProps> = ({ pins }) => (
+const MasonryLayout: React.FC<any> = ({ pins }) => (
   <Masonry
     className='flex animate-slide-fwd'
     breakpointCols={breakpointColumnsObj}
   >
-    {pins?.map(pin => (
+    {pins?.map((pin: any) => (
       <Pin className='w-max' key={pin._id} pin={pin} />
     ))}
   </Masonry>

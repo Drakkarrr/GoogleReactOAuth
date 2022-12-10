@@ -18,7 +18,8 @@ const Login = (): JSX.Element => {
 
   const onSuccess = (response: CredentialResponse): void => {
     const userObject = jwt_decode(response.credential as string)
-    console.log(userObject)
+    // console.log(userObject)
+    // navigate('/dashboard', { replace: true })
     localStorage.setItem('user', JSON.stringify(userObject))
 
     const { name, sub, picture } = userObject as any
@@ -30,11 +31,11 @@ const Login = (): JSX.Element => {
       image: picture,
     }
 
-    console.log(doc)
+    // console.log(doc)
 
     client.createIfNotExists(doc).then(() => {
       navigate('/dashboard', { replace: true })
-      console.log('User successfully created!')
+      // console.log('User successfully created!')
     })
   }
 

@@ -2,8 +2,9 @@ import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { RiHomeFill } from 'react-icons/ri'
 import { IoIosArrowForward } from 'react-icons/io'
+
 import logo from '../assets/camera.png'
-import { categories } from '../utils/helpers/data'
+import { categories } from '../utils/helpers/categories'
 
 const isNotActiveStyle =
   'flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize'
@@ -26,7 +27,7 @@ const Sidebar: React.FC<Props> = ({ closeToggle, user }) => {
     <div className='flex flex-col justify-between bg-white h-full overflow-y-scroll min-w-210 hide-scrollbar'>
       <div className='flex flex-col'>
         <Link
-          to='/'
+          to='/dashboard'
           className='flex px-5 gap-2 my-6 pt-1 w-190 items-center'
           onClick={handleCloseSidebar}
         >
@@ -34,8 +35,8 @@ const Sidebar: React.FC<Props> = ({ closeToggle, user }) => {
         </Link>
         <div className='flex flex-col gap-5'>
           <NavLink
-            to='/'
-            className={({ isActive }) =>
+            to='/dashboard'
+            className={({ isActive }): string =>
               isActive ? isActiveStyle : isNotActiveStyle
             }
             onClick={handleCloseSidebar}
@@ -57,7 +58,7 @@ const Sidebar: React.FC<Props> = ({ closeToggle, user }) => {
             >
               <img
                 src={category.image}
-                alt=''
+                alt='image of category'
                 className='w-8 h-8 rounded-full shadow-sm'
               />
               {category.name}

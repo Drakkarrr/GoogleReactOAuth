@@ -40,11 +40,3 @@ const GalleryPage = ({ user }): JSX.Element => {
 }
 
 export default GalleryPage
-
-// import React from 'react'
-
-// const GalleryPage = () => {
-//   return <div>GalleryPage</div>
-// }
-
-export default GalleryPage

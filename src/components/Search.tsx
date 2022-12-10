@@ -5,7 +5,7 @@ import { client } from '../services/client'
 import { feedQuery, searchQuery } from '../utils/helpers/data'
 import Spinner from './Spinner'
 
-const Search = ({ searchTerm }) => {
+const Search: React.FC<any> = ({ searchTerm }) => {
   const [pins, setPins] = useState<any | string>()
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -26,7 +26,7 @@ const Search = ({ searchTerm }) => {
   }, [searchTerm])
 
   return (
-    <div>
+    <div className=''>
       {loading && <Spinner message='Searching pins' />}
       {pins?.length !== 0 && <MasonryLayout pins={pins} />}
       {pins?.length === 0 && searchTerm !== '' && !loading && (
